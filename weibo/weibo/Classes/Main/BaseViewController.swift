@@ -8,10 +8,11 @@
 
 import UIKit
 
-class BaseViewController: UITableViewController {
+class BaseViewController: UITableViewController, VisitorViewDelegate {
     
-    let userLogin = false
-    
+    let userLogin = true
+    var visitorView: VisitorView?
+        
     override func loadView() {
         userLogin ? super.loadView() : setupVisitorView()
     }
@@ -20,8 +21,22 @@ class BaseViewController: UITableViewController {
     {
         let customView = VisitorView()
         view = customView
+        customView.delegate = self
+        visitorView = customView
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(itemRegisterClick))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登陆", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(itemLoginClick))
     }
     
+    func itemRegisterClick()
+    {
+        print(#function)
+    }
+    
+    func itemLoginClick()
+    {
+        print(#function)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +50,16 @@ class BaseViewController: UITableViewController {
         
     }
     
-  
+    // MARK: - VisitorViewDelegate
+    func loginButtonClick()
+    {
+        print(#function)
+    }
+    
+    func registerButtonClick()
+    {
+        print(#function)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

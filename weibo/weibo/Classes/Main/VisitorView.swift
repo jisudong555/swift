@@ -9,7 +9,34 @@
 import UIKit
 import SnapKit
 
+protocol VisitorViewDelegate: NSObjectProtocol {
+    func registerButtonClick()
+    func loginButtonClick()
+}
+
 class VisitorView: UIView {
+    
+    weak var delegate: VisitorViewDelegate?
+    
+    func setupVisitorView(isHome: Bool, imageName: String, message: String)
+    {
+        iconView.hidden = !isHome
+        homeIcon.image = UIImage(named: imageName)
+        messageLabel.text = message
+        if isHome {
+            setupAnimation()
+        }
+    }
+
+    func setupAnimation()
+    {
+        let animation = CABasicAnimation(keyPath: "transform.rotation")
+        animation.toValue = 2 * M_PI
+        animation.duration = 20
+        animation.repeatCount = MAXFLOAT
+        animation.removedOnCompletion = false
+        iconView.layer.addAnimation(animation, forKey: nil)
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,6 +108,7 @@ class VisitorView: UIView {
         button.setTitleColor(UIColor.darkGrayColor(), forState: UIControlState.Normal)
         button.setTitle("登陆", forState: UIControlState.Normal)
         button.setBackgroundImage(UIImage(named: "common_button_white_disable"), forState: UIControlState.Normal)
+        button.addTarget(self, action: #selector(loginButtonClick), forControlEvents: UIControlEvents.TouchUpInside)
         return button
     }()
     /// 注册按钮
@@ -89,11 +117,23 @@ class VisitorView: UIView {
         button.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
         button.setTitle("注册", forState: UIControlState.Normal)
         button.setBackgroundImage(UIImage(named: "common_button_white_disable"), forState: UIControlState.Normal)
+        button.addTarget(self, action: #selector(registerButtonClick), forControlEvents: UIControlEvents.TouchUpInside)
         return button
     }()
+    
     /// 覆盖
     private lazy var maskBGView: UIImageView = {
         let mask = UIImageView(image: UIImage(named: "visitordiscover_feed_mask_smallicon"))
         return mask
     }()
+    
+    func loginButtonClick()
+    {
+        delegate?.loginButtonClick()
+    }
+    
+    func registerButtonClick()
+    {
+        delegate?.registerButtonClick()
+    }
 }
