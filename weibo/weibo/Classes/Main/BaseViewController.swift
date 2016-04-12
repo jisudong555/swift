@@ -10,8 +10,19 @@ import UIKit
 
 class BaseViewController: UITableViewController {
     
-    let userLogin = true
-
+    let userLogin = false
+    
+    override func loadView() {
+        userLogin ? super.loadView() : setupVisitorView()
+    }
+    
+    func setupVisitorView()
+    {
+        let customView = VisitorView()
+        view = customView
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +35,7 @@ class BaseViewController: UITableViewController {
         
     }
     
-    
+  
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
