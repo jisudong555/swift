@@ -25,6 +25,16 @@ class HomeViewController: BaseViewController {
     {
         navigationItem.leftBarButtonItem = UIBarButtonItem.createBarButtonItem("navigationbar_friendattention", target: self, action: #selector(leftItemClick))
         navigationItem.rightBarButtonItem = UIBarButtonItem.createBarButtonItem("navigationbar_pop", target: self, action: #selector(rightItemClick))
+        
+        let titleBtn = TitleButton()
+        titleBtn.setTitle("素东", forState: UIControlState.Normal)
+        titleBtn.addTarget(self, action: #selector(titleButtonClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        navigationItem.titleView = titleBtn
+    }
+    
+    func titleButtonClick(button: TitleButton)
+    {
+        button.selected = !button.selected
     }
     
     func leftItemClick()
