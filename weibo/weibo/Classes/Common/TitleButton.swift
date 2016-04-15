@@ -13,6 +13,7 @@ class TitleButton: UIButton {
         super.init(frame: frame)
         
         setTitleColor(UIColor.darkGrayColor(), forState: UIControlState.Normal)
+        titleLabel?.font = UIFont.boldSystemFontOfSize(17)
         setImage(UIImage(named: "navigationbar_arrow_down"), forState: UIControlState.Normal)
         setImage(UIImage(named: "navigationbar_arrow_up"), forState: UIControlState.Selected)
         sizeToFit()

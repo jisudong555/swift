@@ -9,6 +9,11 @@
 import UIKit
 
 class HomeViewController: BaseViewController {
+    
+    deinit
+    {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +24,15 @@ class HomeViewController: BaseViewController {
         }
         
         setupNavigationBar()
+        
+        // 注册通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeTitleArrow), name: PopoverAnimatorWillDismiss, object: nil)
+    }
+    
+    func changeTitleArrow()
+    {
+        let titleButton = navigationItem.titleView as! TitleButton
+        titleButton.selected = !titleButton.selected
     }
 
     private func setupNavigationBar()
@@ -35,6 +49,12 @@ class HomeViewController: BaseViewController {
     func titleButtonClick(button: TitleButton)
     {
         button.selected = !button.selected
+        
+        let sb = UIStoryboard(name: "PopoverViewController", bundle: nil)
+        let vc = sb.instantiateInitialViewController()
+        vc?.transitioningDelegate = popoverAnimator
+        vc?.modalPresentationStyle = UIModalPresentationStyle.Custom
+        presentViewController(vc!, animated: true, completion: nil)
     }
     
     func leftItemClick()
@@ -46,4 +66,20 @@ class HomeViewController: BaseViewController {
     {
         print(#function)
     }
+    
+    private lazy var popoverAnimator: PopoverAnimator = {
+        let pa = PopoverAnimator()
+        let popoverFrameW: CGFloat = 200.0
+        let popoverFrameX = (UIScreen.mainScreen().bounds.size.width - popoverFrameW) * 0.5
+        pa.presentFrame = CGRect(x: popoverFrameX, y: 56, width: popoverFrameW, height: 300)
+        return pa
+    }()
 }
+
+
+
+
+
+
+
+
