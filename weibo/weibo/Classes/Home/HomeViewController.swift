@@ -27,6 +27,7 @@ class HomeViewController: BaseViewController {
         
         // 注册通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeTitleArrow), name: PopoverAnimatorWillDismiss, object: nil)
+        
     }
     
     func changeTitleArrow()
@@ -65,6 +66,9 @@ class HomeViewController: BaseViewController {
     func rightItemClick()
     {
         print(#function)
+        let sb = UIStoryboard(name: "QRCodeViewController", bundle: nil)
+        let vc = sb.instantiateInitialViewController()
+        presentViewController(vc!, animated: true, completion: nil)
     }
     
     private lazy var popoverAnimator: PopoverAnimator = {

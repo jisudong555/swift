@@ -10,7 +10,7 @@ import UIKit
 
 class BaseViewController: UITableViewController, VisitorViewDelegate {
     
-    let userLogin = true
+    let userLogin = UserAccount.userLogin()
     var visitorView: VisitorView?
         
     override func loadView() {
@@ -24,18 +24,8 @@ class BaseViewController: UITableViewController, VisitorViewDelegate {
         customView.delegate = self
         visitorView = customView
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(itemRegisterClick))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登陆", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(itemLoginClick))
-    }
-    
-    func itemRegisterClick()
-    {
-        print(#function)
-    }
-    
-    func itemLoginClick()
-    {
-        print(#function)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(registerButtonClick))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登陆", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(loginButtonClick))
     }
     
     override func viewDidLoad() {

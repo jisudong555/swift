@@ -5,3 +5,4 @@ use_frameworks!
 #pod 'AFNetworking'
 pod 'Alamofire', '~> 3.3'
 pod 'SnapKit'
+pod 'SVProgressHUD'

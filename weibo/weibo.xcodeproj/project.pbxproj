@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		153EE9381CC08AF900EC772E /* PopoverAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EE9371CC08AF900EC772E /* PopoverAnimator.swift */; };
+		153EE93B1CC09A1C00EC772E /* QRCodeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153EE93A1CC09A1C00EC772E /* QRCodeViewController.storyboard */; };
+		153EE93D1CC09A3900EC772E /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EE93C1CC09A3900EC772E /* QRCodeViewController.swift */; };
+		15446C631CCB6B8000FA524C /* QRCodeCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15446C621CCB6B8000FA524C /* QRCodeCardViewController.swift */; };
+		15446C661CCCB64D00FA524C /* OAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15446C651CCCB64D00FA524C /* OAuthViewController.swift */; };
+		15446C711CCDF09600FA524C /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15446C701CCDF09600FA524C /* UserAccount.swift */; };
+		15446C731CCDF55600FA524C /* String+category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15446C721CCDF55600FA524C /* String+category.swift */; };
 		157CC71D1CBC8ED8009FE3D8 /* MainVCSettings.json in Resources */ = {isa = PBXBuildFile; fileRef = 157CC71B1CBC8ED8009FE3D8 /* MainVCSettings.json */; };
 		157CC71E1CBC8ED8009FE3D8 /* NullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157CC71C1CBC8ED8009FE3D8 /* NullViewController.swift */; };
 		157CC7221CBCC945009FE3D8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157CC7211CBCC945009FE3D8 /* BaseViewController.swift */; };
@@ -48,6 +54,13 @@
 /* Begin PBXFileReference section */
 		089005342ED6B43B061DAE03 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		153EE9371CC08AF900EC772E /* PopoverAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverAnimator.swift; sourceTree = "<group>"; };
+		153EE93A1CC09A1C00EC772E /* QRCodeViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRCodeViewController.storyboard; sourceTree = "<group>"; };
+		153EE93C1CC09A3900EC772E /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
+		15446C621CCB6B8000FA524C /* QRCodeCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeCardViewController.swift; sourceTree = "<group>"; };
+		15446C651CCCB64D00FA524C /* OAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthViewController.swift; sourceTree = "<group>"; };
+		15446C6A1CCCC84500FA524C /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		15446C701CCDF09600FA524C /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
+		15446C721CCDF55600FA524C /* String+category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+category.swift"; sourceTree = "<group>"; };
 		157CC71B1CBC8ED8009FE3D8 /* MainVCSettings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MainVCSettings.json; sourceTree = "<group>"; };
 		157CC71C1CBC8ED8009FE3D8 /* NullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullViewController.swift; sourceTree = "<group>"; };
 		157CC7211CBCC945009FE3D8 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +114,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		153EE9391CC099F300EC772E /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				153EE93A1CC09A1C00EC772E /* QRCodeViewController.storyboard */,
+				153EE93C1CC09A3900EC772E /* QRCodeViewController.swift */,
+				15446C621CCB6B8000FA524C /* QRCodeCardViewController.swift */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
+		15446C641CCCB63300FA524C /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				15446C651CCCB64D00FA524C /* OAuthViewController.swift */,
+			);
+			path = OAuth;
+			sourceTree = "<group>";
+		};
+		15446C671CCCC00B00FA524C /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				15446C721CCDF55600FA524C /* String+category.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		15446C6F1CCDF07400FA524C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				15446C701CCDF09600FA524C /* UserAccount.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		157CC71A1CBC8ED8009FE3D8 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				15EA1E9D1CB6BB6D00104F85 /* AppDelegate.swift */,
+				15446C6A1CCCC84500FA524C /* PrefixHeader.pch */,
 				15EA1ECB1CB7ECA200104F85 /* Classes */,
 				15EA1EA41CB6BB6D00104F85 /* Assets.xcassets */,
 				15EA1EA91CB6BB6D00104F85 /* Info.plist */,
@@ -174,6 +222,9 @@
 		15EA1ECB1CB7ECA200104F85 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				15446C6F1CCDF07400FA524C /* Models */,
+				15446C671CCCC00B00FA524C /* Tools */,
+				15446C641CCCB63300FA524C /* OAuth */,
 				15EA1ECC1CB7ECA200104F85 /* Common */,
 				15EA1ECF1CB7ECA200104F85 /* Main */,
 				15EA1ECE1CB7ECA200104F85 /* Home */,
@@ -196,6 +247,7 @@
 		15EA1ECE1CB7ECA200104F85 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				153EE9391CC099F300EC772E /* QRCode */,
 				157CC7661CBF311E009FE3D8 /* Popover */,
 				15EA1ED21CB7ED1000104F85 /* HomeViewController.swift */,
 			);
@@ -364,6 +416,7 @@
 				157CC7681CBF3152009FE3D8 /* PopoverViewController.storyboard in Resources */,
 				157CC71D1CBC8ED8009FE3D8 /* MainVCSettings.json in Resources */,
 				15EA1EA51CB6BB6D00104F85 /* Assets.xcassets in Resources */,
+				153EE93B1CC09A1C00EC772E /* QRCodeViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,14 +493,19 @@
 				15EA1ED51CB7EE7200104F85 /* TabBarController.swift in Sources */,
 				157CC7601CBD5DF2009FE3D8 /* UIBarButtonItem+Extension.swift in Sources */,
 				15EA1E9E1CB6BB6D00104F85 /* AppDelegate.swift in Sources */,
+				15446C661CCCB64D00FA524C /* OAuthViewController.swift in Sources */,
 				157CC7641CBDEBFF009FE3D8 /* TitleButton.swift in Sources */,
+				15446C731CCDF55600FA524C /* String+category.swift in Sources */,
 				157CC76A1CBF60E5009FE3D8 /* PopoverPresentationController.swift in Sources */,
+				15446C631CCB6B8000FA524C /* QRCodeCardViewController.swift in Sources */,
+				15446C711CCDF09600FA524C /* UserAccount.swift in Sources */,
 				15EA1EE01CB7F44F00104F85 /* DiscoverViewController.swift in Sources */,
 				153EE9381CC08AF900EC772E /* PopoverAnimator.swift in Sources */,
 				15EA1ED71CB7F18800104F85 /* MessageViewController.swift in Sources */,
 				157CC7221CBCC945009FE3D8 /* BaseViewController.swift in Sources */,
 				157CC75E1CBCF766009FE3D8 /* VisitorView.swift in Sources */,
 				15EA1ED31CB7ED1000104F85 /* HomeViewController.swift in Sources */,
+				153EE93D1CC09A3900EC772E /* QRCodeViewController.swift in Sources */,
 				157CC71E1CBC8ED8009FE3D8 /* NullViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,11 +631,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/weibo/PrefixHeader.pch";
 				INFOPLIST_FILE = weibo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jisudong.weibo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = weibo/PrefixHeader.pch;
 			};
 			name = Debug;
 		};
@@ -587,11 +648,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/weibo/PrefixHeader.pch";
 				INFOPLIST_FILE = weibo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jisudong.weibo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = weibo/PrefixHeader.pch;
 			};
 			name = Release;
 		};
