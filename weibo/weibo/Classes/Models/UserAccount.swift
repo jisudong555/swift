@@ -58,7 +58,7 @@ class UserAccount: NSObject, NSCoding {
     {
         assert(access_token != nil, "没有授权")
         
-        let path = "2/users/show.json"
+        let path = "https://api.weibo.com/2/users/show.json"
         let params = ["access_token": access_token!, "uid": uid!]
         
         Alamofire.request(.GET, path, parameters: params, encoding: ParameterEncoding.URL, headers: nil)

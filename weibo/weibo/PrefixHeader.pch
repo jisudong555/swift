@@ -14,5 +14,7 @@
 
 @import Alamofire;
 @import SVProgressHUD;
+@import SDWebImage;
+@import SnapKit;
 
 #endif /* PrefixHeader_pch */

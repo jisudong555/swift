@@ -6,3 +6,6 @@ use_frameworks!
 pod 'Alamofire', '~> 3.3'
 pod 'SnapKit'
 pod 'SVProgressHUD'
+pod 'SDWebImage', '~>3.7'
+pod 'Reveal-iOS-SDK', :configurations => ['Debug']
+#pod 'Kingfisher', '~> 2.3' // swift版本网络图片设置，和 SDWebImage 功能一样

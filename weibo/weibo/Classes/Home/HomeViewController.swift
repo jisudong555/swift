@@ -8,7 +8,15 @@
 
 import UIKit
 
+
 class HomeViewController: BaseViewController {
+    
+    var statuses: [Status]?
+    {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     deinit
     {
@@ -17,6 +25,8 @@ class HomeViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.darkGrayColor()
         
         if !userLogin {
             visitorView?.setupVisitorView(true, imageName: "visitordiscover_feed_image_house", message: "关注一些人，回这里看看有什么惊喜")
@@ -27,6 +37,26 @@ class HomeViewController: BaseViewController {
         
         // 注册通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeTitleArrow), name: PopoverAnimatorWillDismiss, object: nil)
+        
+//        tableView.registerClass(StatusForwardCell.self, forCellReuseIdentifier: StatusCellReuseIdentifier.Forward.rawValue)
+        tableView.registerClass(StatusNormalCell.self, forCellReuseIdentifier: StatusCellReuseIdentifier.Normal.rawValue)
+        
+//        tableView.estimatedRowHeight = 200
+//        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        Status.loadStatues { (models, error) in
+            
+            self.statuses = models
+        }
+        
+        
+//        let instance = NetworkingManager.sharedInstance()
+//        let instance1 = NetworkingManager.sharedInstance()
+//        let instance2 = NetworkingManager()
+//        
+//        print("NetworkingManager: \(instance),   \(instance1),  \(instance2)")
         
     }
     
@@ -78,9 +108,55 @@ class HomeViewController: BaseViewController {
         pa.presentFrame = CGRect(x: popoverFrameX, y: 56, width: popoverFrameW, height: 300)
         return pa
     }()
+    
+    // 缓存cell高度
+    private var cellHeightCache = [Int: CGFloat]()
+    
+    override func didReceiveMemoryWarning() {
+        cellHeightCache.removeAll()
+    }
 }
 
+extension HomeViewController
+{
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return statuses?.count ?? 0
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let status = statuses![indexPath.row]
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(StatusCellReuseIdentifier.Normal.rawValue, forIndexPath: indexPath) as! StatusCell
+        
+        
+        cell.status = status
+        
+        return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let status = statuses![indexPath.row]
+        
+//        if let cacheHeight = cellHeightCache[status.id]
+//        {
+//            print("缓存中获取")
+//            return cacheHeight
+//        }
+        
+        print("重新计算")
+        var height: CGFloat = 0
+//        switch StatusCellReuseIdentifier.cellID(status) {
+//        case StatusCellReuseIdentifier.Normal.rawValue:
+//            height = StatusForwardCell.cellHeightWithModel(status)
+//        default:
+            height = StatusNormalCell.cellHeightWithModel(status)
+//        }
 
+        cellHeightCache[status.id] = height
+        
+        return  height
+    }
+}
 
 
 

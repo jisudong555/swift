@@ -21,7 +21,6 @@ class OAuthViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.title = "素东微博"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "关闭", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(closeOAuth))
         
@@ -67,8 +66,9 @@ extension OAuthViewController: UIWebViewDelegate
         {
             print("授权失败")
         }
-        
+
         return false
+        
     }
     
     private func loadAccessToken(code: String)
@@ -92,6 +92,9 @@ extension OAuthViewController: UIWebViewDelegate
                 if account != nil
                 {
                     account!.saveAccount()
+                    // 去欢迎界面
+                    NSNotificationCenter.defaultCenter().postNotificationName(SwitchRootViewControllerNotification, object: false)
+                    return
                 }
                 
                 SVProgressHUD.showInfoWithStatus("网络不给力")

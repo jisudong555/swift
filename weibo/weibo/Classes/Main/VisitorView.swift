@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 
 protocol VisitorViewDelegate: NSObjectProtocol {
+
     func registerButtonClick()
     func loginButtonClick()
 }
