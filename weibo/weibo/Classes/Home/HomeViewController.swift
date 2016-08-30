@@ -78,9 +78,6 @@ class HomeViewController: BaseViewController {
         pa.presentFrame = CGRect(x: popoverFrameX, y: 56, width: popoverFrameW, height: 300)
         return pa
     }()
-    
-    
-    
 }
 
 
