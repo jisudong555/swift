@@ -26,7 +26,7 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.darkGrayColor()
+        view.backgroundColor = UIColor.init(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1)
         
         if !userLogin {
             visitorView?.setupVisitorView(true, imageName: "visitordiscover_feed_image_house", message: "关注一些人，回这里看看有什么惊喜")
@@ -38,7 +38,7 @@ class HomeViewController: BaseViewController {
         // 注册通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeTitleArrow), name: PopoverAnimatorWillDismiss, object: nil)
         
-//        tableView.registerClass(StatusForwardCell.self, forCellReuseIdentifier: StatusCellReuseIdentifier.Forward.rawValue)
+        tableView.registerClass(StatusForwardCell.self, forCellReuseIdentifier: StatusCellReuseIdentifier.Forward.rawValue)
         tableView.registerClass(StatusNormalCell.self, forCellReuseIdentifier: StatusCellReuseIdentifier.Normal.rawValue)
         
 //        tableView.estimatedRowHeight = 200
@@ -126,7 +126,7 @@ extension HomeViewController
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let status = statuses![indexPath.row]
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(StatusCellReuseIdentifier.Normal.rawValue, forIndexPath: indexPath) as! StatusCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(StatusCellReuseIdentifier.cellID(status), forIndexPath: indexPath) as! StatusCell
         
         
         cell.status = status
@@ -145,12 +145,12 @@ extension HomeViewController
         
         print("重新计算")
         var height: CGFloat = 0
-//        switch StatusCellReuseIdentifier.cellID(status) {
-//        case StatusCellReuseIdentifier.Normal.rawValue:
-//            height = StatusForwardCell.cellHeightWithModel(status)
-//        default:
+        switch StatusCellReuseIdentifier.cellID(status) {
+        case StatusCellReuseIdentifier.Normal.rawValue:
             height = StatusNormalCell.cellHeightWithModel(status)
-//        }
+        default:
+            height = StatusForwardCell.cellHeightWithModel(status)
+        }
 
         cellHeightCache[status.id] = height
         

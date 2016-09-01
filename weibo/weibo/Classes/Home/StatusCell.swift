@@ -38,8 +38,8 @@ class StatusCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = UIColor.lightGrayColor()
-        contentView.backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.whiteColor()
+        contentView.backgroundColor = UIColor.init(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1)
         setupUI()
     }
     
@@ -50,13 +50,45 @@ class StatusCell: UITableViewCell {
     
     func setupUI()
     {
-        contentView.addSubview(topView)
-        contentView.addSubview(contentLabel)
-        contentView.addSubview(pictureView)
-        contentView.addSubview(footerView)
+        contentView.addSubview(container)
+        container.addSubview(topView)
+        container.addSubview(contentLabel)
+        container.addSubview(pictureView)
+        container.addSubview(footerView)
+        
+        container.snp_makeConstraints { (make) in
+            make.edges.equalTo(contentView).inset(UIEdgeInsetsMake(0, 0, 10, 0))
+        }
+        
+        topView.snp_makeConstraints { (make) in
+            make.top.left.right.equalTo(container).inset(UIEdgeInsetsMake(10, 0, 0, 0))
+            make.height.equalTo(50)
+        }
+        
+        contentLabel.snp_makeConstraints { (make) in
+            make.left.equalTo(topView).offset(10)
+            make.top.equalTo(topView.snp_bottom).offset(10)
+        }
+        
+        pictureView.snp_makeConstraints { (make) in
+            make.top.equalTo(contentLabel.snp_bottom).offset(0)
+            make.left.equalTo(topView).offset(10)
+            make.size.equalTo(CGSizeZero)
+        }
+        
+        footerView.snp_makeConstraints { (make) in
+            make.top.equalTo(pictureView.snp_bottom).offset(10)
+            make.left.bottom.right.equalTo(container).inset(UIEdgeInsetsMake(0, 0, 0, 0))
+            make.height.equalTo(35);
+        }
     }
 
    // MARK: - 懒加载
+    lazy var container: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.whiteColor()
+        return view;
+    }()
     /// 顶部信息
     lazy var topView: StatusTopView = StatusTopView()
     
