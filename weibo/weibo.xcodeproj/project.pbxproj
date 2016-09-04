@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		153065521D7C4EF800438ACB /* HomeRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 153065511D7C4EF800438ACB /* HomeRefreshView.xib */; };
+		153065541D7C525F00438ACB /* HomeRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153065531D7C525F00438ACB /* HomeRefreshControl.swift */; };
 		153EE9381CC08AF900EC772E /* PopoverAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EE9371CC08AF900EC772E /* PopoverAnimator.swift */; };
 		153EE93B1CC09A1C00EC772E /* QRCodeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153EE93A1CC09A1C00EC772E /* QRCodeViewController.storyboard */; };
 		153EE93D1CC09A3900EC772E /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EE93C1CC09A3900EC772E /* QRCodeViewController.swift */; };
@@ -68,6 +70,8 @@
 
 /* Begin PBXFileReference section */
 		089005342ED6B43B061DAE03 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		153065511D7C4EF800438ACB /* HomeRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeRefreshView.xib; sourceTree = "<group>"; };
+		153065531D7C525F00438ACB /* HomeRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRefreshControl.swift; sourceTree = "<group>"; };
 		153EE9371CC08AF900EC772E /* PopoverAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverAnimator.swift; sourceTree = "<group>"; };
 		153EE93A1CC09A1C00EC772E /* QRCodeViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRCodeViewController.storyboard; sourceTree = "<group>"; };
 		153EE93C1CC09A3900EC772E /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +301,8 @@
 				153EE9391CC099F300EC772E /* QRCode */,
 				157CC7661CBF311E009FE3D8 /* Popover */,
 				15EA1ED21CB7ED1000104F85 /* HomeViewController.swift */,
+				153065511D7C4EF800438ACB /* HomeRefreshView.xib */,
+				153065531D7C525F00438ACB /* HomeRefreshControl.swift */,
 				15702E941CEACEBD0031ACC9 /* StatusCell.swift */,
 				155A24461CEEB5A4002D4AE9 /* StatusNormalCell.swift */,
 				155A24481CEEB5B6002D4AE9 /* StatusForwardCell.swift */,
@@ -468,6 +474,7 @@
 			files = (
 				157CC7681CBF3152009FE3D8 /* PopoverViewController.storyboard in Resources */,
 				157CC71D1CBC8ED8009FE3D8 /* MainVCSettings.json in Resources */,
+				153065521D7C4EF800438ACB /* HomeRefreshView.xib in Resources */,
 				15EA1EA51CB6BB6D00104F85 /* Assets.xcassets in Resources */,
 				153EE93B1CC09A1C00EC772E /* QRCodeViewController.storyboard in Resources */,
 			);
@@ -558,6 +565,7 @@
 				15446C631CCB6B8000FA524C /* QRCodeCardViewController.swift in Sources */,
 				15446C711CCDF09600FA524C /* UserAccount.swift in Sources */,
 				156C97461CCF252A002F5303 /* NewfeatureCollectionViewController.swift in Sources */,
+				153065541D7C525F00438ACB /* HomeRefreshControl.swift in Sources */,
 				15702E9D1CEC07330031ACC9 /* StatusBottomView.swift in Sources */,
 				155A24451CED6D49002D4AE9 /* NetworkingManager.swift in Sources */,
 				15EA1EE01CB7F44F00104F85 /* DiscoverViewController.swift in Sources */,

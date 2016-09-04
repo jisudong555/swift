@@ -46,10 +46,13 @@ class HomeViewController: BaseViewController {
         
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
-        Status.loadStatues { (models, error) in
-            
-            self.statuses = models
-        }
+        refreshControl = HomeRefreshControl()
+        
+        refreshControl?.addTarget(self, action: #selector(loadData), forControlEvents: UIControlEvents.ValueChanged)
+        
+        loadData()
+        
+        
         
         
 //        let instance = NetworkingManager.sharedInstance()
@@ -58,6 +61,58 @@ class HomeViewController: BaseViewController {
 //        
 //        print("NetworkingManager: \(instance),   \(instance1),  \(instance2)")
         
+    }
+    
+    private var pullupRefreshFlag = false
+    
+    @objc private func loadData()
+    {
+        var since_id = statuses?.first?.id ?? 0
+        var max_id = 0
+        if pullupRefreshFlag
+        {
+            since_id = 0
+            max_id = statuses?.last?.id ?? 0
+        }
+        
+        Status.loadStatues(since_id, max_id: max_id) { (models, error) in
+            
+            self.refreshControl?.endRefreshing()
+            
+            if error != nil
+            {
+                return
+            }
+            
+            if since_id > 0
+            {
+                self.statuses = models! + self.statuses!
+                self.showNewStatusCount(models?.count ?? 0)
+            } else if max_id > 0
+            {
+                self.statuses = self.statuses! + models!
+            } else
+            {
+                self.statuses = models
+            }
+        
+        }
+    }
+    
+    private func showNewStatusCount(count : Int)
+    {
+        newStatusLabel.hidden = false
+        newStatusLabel.text = (count == 0) ? "没有刷新到新的微博数据" : "刷新到\(count)条微博数据"
+        UIView.animateWithDuration(2, animations: { () -> Void in
+            self.newStatusLabel.transform = CGAffineTransformMakeTranslation(0, self.newStatusLabel.frame.height)
+            
+        }) { (_) -> Void in
+            UIView.animateWithDuration(2, animations: { () -> Void in
+                self.newStatusLabel.transform = CGAffineTransformIdentity
+                }, completion: { (_) -> Void in
+                    self.newStatusLabel.hidden = true
+            })
+        }
     }
     
     func changeTitleArrow()
@@ -109,6 +164,26 @@ class HomeViewController: BaseViewController {
         return pa
     }()
     
+    /// 刷新提醒控件
+    private lazy var newStatusLabel: UILabel =
+        {
+            let label = UILabel()
+            let height: CGFloat = 44
+            //        label.frame =  CGRect(x: 0, y: -2 * height, width: UIScreen.mainScreen().bounds.width, height: height)
+            label.frame =  CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: height)
+            
+            label.backgroundColor = UIColor.orangeColor()
+            label.textColor = UIColor.whiteColor()
+            label.textAlignment = NSTextAlignment.Center
+            
+            // 加载 navBar 上面，不会随着 tableView 一起滚动
+            self.navigationController?.navigationBar.insertSubview(label, atIndex: 0)
+            
+            label.hidden = true
+            return label
+    }()
+
+    
     // 缓存cell高度
     private var cellHeightCache = [Int: CGFloat]()
     
@@ -128,8 +203,14 @@ extension HomeViewController
         
         let cell = tableView.dequeueReusableCellWithIdentifier(StatusCellReuseIdentifier.cellID(status), forIndexPath: indexPath) as! StatusCell
         
-        
         cell.status = status
+        
+        let count = statuses?.count ?? 0
+        if indexPath.row == (count - 1)
+        {
+            pullupRefreshFlag = true
+            loadData()
+        }
         
         return cell
     }

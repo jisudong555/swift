@@ -65,10 +65,22 @@ class Status: NSObject {
         return retweeted_status != nil ? retweeted_status?.storedPicURLs : storedPicURLs
     }
 
-    class func loadStatues(finished: (models: [Status]?, error: NSError?) -> ())
+    class func loadStatues(since_id: Int, max_id: Int, finished: (models: [Status]?, error: NSError?) -> ())
     {
         let path = "https://api.weibo.com/2/statuses/home_timeline.json"
-        let params = ["access_token": UserAccount.loadAccount()!.access_token!]
+        var params = ["access_token": UserAccount.loadAccount()!.access_token!]
+        
+        if since_id > 0
+        {
+            params["since_id"] = "\(since_id)"
+        }
+        
+        if max_id > 0
+        {
+            params["max_id"] = "\(max_id)"
+        }
+        
+        
         Alamofire.request(.GET, path, parameters: params, encoding: ParameterEncoding.URL, headers: nil)
             .responseJSON { (response) in
 //                print(response.result.value)
