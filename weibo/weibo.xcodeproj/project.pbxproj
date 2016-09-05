@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		153065521D7C4EF800438ACB /* HomeRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 153065511D7C4EF800438ACB /* HomeRefreshView.xib */; };
 		153065541D7C525F00438ACB /* HomeRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153065531D7C525F00438ACB /* HomeRefreshControl.swift */; };
+		153065571D7CD33300438ACB /* PhotoBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153065561D7CD33300438ACB /* PhotoBrowserController.swift */; };
+		153065591D7CD39C00438ACB /* PhotoBrowserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153065581D7CD39C00438ACB /* PhotoBrowserCell.swift */; };
 		153EE9381CC08AF900EC772E /* PopoverAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EE9371CC08AF900EC772E /* PopoverAnimator.swift */; };
 		153EE93B1CC09A1C00EC772E /* QRCodeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153EE93A1CC09A1C00EC772E /* QRCodeViewController.storyboard */; };
 		153EE93D1CC09A3900EC772E /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EE93C1CC09A3900EC772E /* QRCodeViewController.swift */; };
@@ -72,6 +74,8 @@
 		089005342ED6B43B061DAE03 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		153065511D7C4EF800438ACB /* HomeRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeRefreshView.xib; sourceTree = "<group>"; };
 		153065531D7C525F00438ACB /* HomeRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRefreshControl.swift; sourceTree = "<group>"; };
+		153065561D7CD33300438ACB /* PhotoBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserController.swift; sourceTree = "<group>"; };
+		153065581D7CD39C00438ACB /* PhotoBrowserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserCell.swift; sourceTree = "<group>"; };
 		153EE9371CC08AF900EC772E /* PopoverAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverAnimator.swift; sourceTree = "<group>"; };
 		153EE93A1CC09A1C00EC772E /* QRCodeViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRCodeViewController.storyboard; sourceTree = "<group>"; };
 		153EE93C1CC09A3900EC772E /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +152,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		153065551D7CD30B00438ACB /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				153065561D7CD33300438ACB /* PhotoBrowserController.swift */,
+				153065581D7CD39C00438ACB /* PhotoBrowserCell.swift */,
+			);
+			path = PhotoBrowser;
+			sourceTree = "<group>";
+		};
 		153EE9391CC099F300EC772E /* QRCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +311,7 @@
 		15EA1ECE1CB7ECA200104F85 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				153065551D7CD30B00438ACB /* PhotoBrowser */,
 				153EE9391CC099F300EC772E /* QRCode */,
 				157CC7661CBF311E009FE3D8 /* Popover */,
 				15EA1ED21CB7ED1000104F85 /* HomeViewController.swift */,
@@ -552,6 +566,7 @@
 				15EA1EDB1CB7F1E300104F85 /* ProfileViewController.swift in Sources */,
 				155A24491CEEB5B6002D4AE9 /* StatusForwardCell.swift in Sources */,
 				156C97481CCF5F0A002F5303 /* WelcomeViewController.swift in Sources */,
+				153065591D7CD39C00438ACB /* PhotoBrowserCell.swift in Sources */,
 				156C974A1CD1EFE0002F5303 /* Status.swift in Sources */,
 				15EA1ED51CB7EE7200104F85 /* TabBarController.swift in Sources */,
 				157CC7601CBD5DF2009FE3D8 /* UIBarButtonItem+Extension.swift in Sources */,
@@ -566,6 +581,7 @@
 				15446C711CCDF09600FA524C /* UserAccount.swift in Sources */,
 				156C97461CCF252A002F5303 /* NewfeatureCollectionViewController.swift in Sources */,
 				153065541D7C525F00438ACB /* HomeRefreshControl.swift in Sources */,
+				153065571D7CD33300438ACB /* PhotoBrowserController.swift in Sources */,
 				15702E9D1CEC07330031ACC9 /* StatusBottomView.swift in Sources */,
 				155A24451CED6D49002D4AE9 /* NetworkingManager.swift in Sources */,
 				15EA1EE01CB7F44F00104F85 /* DiscoverViewController.swift in Sources */,

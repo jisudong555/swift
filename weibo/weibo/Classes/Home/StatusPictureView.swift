@@ -26,7 +26,7 @@ class StatusPictureView: UICollectionView {
         registerClass(PictureViewCell.self, forCellWithReuseIdentifier: PictureViewCellIdentifier)
         
         dataSource = self
-//        delegate = self
+        delegate = self
         
         pictureLayout.minimumInteritemSpacing = 5
         pictureLayout.minimumLineSpacing = 5
@@ -114,8 +114,15 @@ class StatusPictureView: UICollectionView {
     }
 }
 
+/// 选中图片的通知名称
+let SDStatusPictureViewSelected = "XMGStatusPictureViewSelected"
+/// 当前选中图片的索引对应的key
+let SDStatusPictureViewIndexKey = "XMGStatusPictureViewIndexKey"
+/// 需要展示的所有图片对应的key
+let SDStatusPictureViewURLsKey = "XMGStatusPictureViewURLsKey"
+
 // MARK: - 扩展
-extension StatusPictureView: UICollectionViewDataSource
+extension StatusPictureView: UICollectionViewDataSource, UICollectionViewDelegate
 {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return status?.storedPicURLs?.count ?? 0
@@ -128,4 +135,11 @@ extension StatusPictureView: UICollectionViewDataSource
         
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let info = [SDStatusPictureViewIndexKey : indexPath, SDStatusPictureViewURLsKey : status!.storedLargePicURLS!]
+        NSNotificationCenter.defaultCenter().postNotificationName(SDStatusPictureViewSelected, object: self, userInfo: info)
+    }
+
 }

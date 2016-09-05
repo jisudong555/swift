@@ -37,6 +37,7 @@ class HomeViewController: BaseViewController {
         
         // 注册通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeTitleArrow), name: PopoverAnimatorWillDismiss, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showPhotoBrowser(_:)), name: SDStatusPictureViewSelected, object: nil)
         
         tableView.registerClass(StatusForwardCell.self, forCellReuseIdentifier: StatusCellReuseIdentifier.Forward.rawValue)
         tableView.registerClass(StatusNormalCell.self, forCellReuseIdentifier: StatusCellReuseIdentifier.Normal.rawValue)
@@ -61,6 +62,23 @@ class HomeViewController: BaseViewController {
 //        
 //        print("NetworkingManager: \(instance),   \(instance1),  \(instance2)")
         
+    }
+    
+    func showPhotoBrowser(noti: NSNotification)
+    {
+        guard let indexPath = noti.userInfo![SDStatusPictureViewIndexKey] as? NSIndexPath else
+        {
+            return
+        }
+        
+        guard let urls = noti.userInfo![SDStatusPictureViewURLsKey] as? [NSURL] else
+        {
+            return
+        }
+        
+        let vc = PhotoBrowserController(index: indexPath.item, ulrs: urls)
+        
+        presentViewController(vc, animated: true, completion: nil)
     }
     
     private var pullupRefreshFlag = false
