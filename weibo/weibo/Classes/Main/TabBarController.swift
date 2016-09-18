@@ -54,6 +54,9 @@ class TabBarController: UITabBarController {
     func composeButtonAction()
     {
         print(#function)
+        let vc = ComposeViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        presentViewController(nav, animated: true, completion: nil)
     }
     
     // MARK: - 加载控制器
