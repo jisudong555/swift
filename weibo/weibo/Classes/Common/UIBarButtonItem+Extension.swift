@@ -19,4 +19,16 @@ extension UIBarButtonItem {
         button.sizeToFit()
         return UIBarButtonItem(customView: button)
     }
+    
+    convenience init(imageName: String, target: AnyObject?, action: String?) {
+        let button = UIButton()
+        button.setImage(UIImage(named: imageName), forState: UIControlState.Normal)
+        button.setImage(UIImage(named: imageName + "_highlighted"), forState: UIControlState.Highlighted)
+        if let action = action
+        {
+            button.addTarget(target, action: NSSelectorFromString(action), forControlEvents: UIControlEvents.TouchUpInside)
+        }
+        button.sizeToFit()
+        self.init(customView: button)
+    }
 }

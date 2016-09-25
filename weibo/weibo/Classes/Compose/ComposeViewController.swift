@@ -12,9 +12,11 @@ class ComposeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardChange(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
         
         setupNav()
         setupInputView()
+        setupToolbar()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -27,6 +29,16 @@ class ComposeViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         textView.resignFirstResponder()
+    }
+    
+    func keyboardChange(noti: NSNotification)
+    {
+        let value = noti.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        let rect = value.CGRectValue()
+        let height = -(UIScreen.mainScreen().bounds.height - rect.origin.y)
+        toolbar.snp_updateConstraints { (make) in
+            make.bottom.equalTo(height)
+        }
     }
     
     private func setupNav()
@@ -78,8 +90,48 @@ class ComposeViewController: UIViewController {
         }
     }
     
+    private func setupToolbar()
+    {
+        view.addSubview(toolbar)
+        
+        var items = [UIBarButtonItem]()
+        let itemSettins = [["imageName": "compose_toolbar_picture", "action": "selectPicture"],
+                           
+                           ["imageName": "compose_mentionbutton_background"],
+                           
+                           ["imageName": "compose_trendbutton_background"],
+                           
+                           ["imageName": "compose_emoticonbutton_background", "action": "inputEmoticon"],
+                           
+                           ["imageName": "compose_addbutton_background"]]
+        for dict in itemSettins
+        {
+            let item = UIBarButtonItem(imageName: dict["imageName"]!, target: self, action: dict["action"])
+            items.append(item)
+            items.append(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil))
+        }
+        items.removeLast()
+        toolbar.items = items
+        
+        toolbar.snp_makeConstraints { (make) in
+            make.left.bottom.right.equalTo(self.view);
+            make.height.equalTo(44)
+        }
+    }
+    
+    func selectPicture()
+    {
+        
+    }
+    
+    func inputEmoticon()
+    {
+        
+    }
+    
     func closeAction()
     {
+        textView.resignFirstResponder()
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -118,6 +170,8 @@ class ComposeViewController: UIViewController {
         label.text = "分享新鲜事..."
         return label
     }()
+    
+    private lazy var toolbar: UIToolbar = UIToolbar()
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
