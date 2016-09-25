@@ -14,6 +14,8 @@ class ComposeViewController: UIViewController {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardChange(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
         
+        addChildViewController(emoticonVC)
+        
         setupNav()
         setupInputView()
         setupToolbar()
@@ -39,6 +41,27 @@ class ComposeViewController: UIViewController {
         toolbar.snp_updateConstraints { (make) in
             make.bottom.equalTo(height)
         }
+        
+        let duration = noti.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
+        
+        /*
+         工具条回弹是因为执行了两次动画, 而系统自带的键盘的动画节奏(曲线) 7
+         7在apple API中并没有提供给我们, 但是我们可以使用
+         7这种节奏有一个特点: 如果连续执行两次动画, 不管上一次有没有执行完毕, 都会立刻执行下一次
+         也就是说上一次可能会被忽略
+         
+         如果将动画节奏设置为7, 那么动画的时长无论如何都会自动修改为0.5
+         
+         UIView动画的本质是核心动画, 所以可以给核心动画设置动画节奏
+         */
+        // 1.取出键盘的动画节奏
+        let curve = noti.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
+        
+        UIView.animateWithDuration(duration.doubleValue) {
+            UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: curve.integerValue)!)
+            self.view.layoutIfNeeded()
+        }
+        
     }
     
     private func setupNav()
@@ -126,7 +149,9 @@ class ComposeViewController: UIViewController {
     
     func inputEmoticon()
     {
-        
+        textView.resignFirstResponder()
+        textView.inputView = textView.inputView == nil ? emoticonVC.view : nil
+        textView.becomeFirstResponder()
     }
     
     func closeAction()
@@ -159,6 +184,8 @@ class ComposeViewController: UIViewController {
     // MARK: - 懒加载
     private lazy var textView: UITextView = {
         let tv = UITextView()
+        tv.alwaysBounceVertical = true
+        tv.keyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag
         tv.delegate = self
         return tv
     }()
@@ -172,6 +199,10 @@ class ComposeViewController: UIViewController {
     }()
     
     private lazy var toolbar: UIToolbar = UIToolbar()
+    
+    private lazy var emoticonVC: EmoticonViewController = EmoticonViewController { [unowned self](emoticon) in
+        self.textView.insertEmoticon(emoticon)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
